@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public static class ServerManager : Object {
+public class ServerManager : MonoBehaviour {
 
 	private string results;
-//	private string supercheckoutvr = "https://supercheckoutvr.herokuapp.com/";
+	private string supercheckoutvr = "localhost:6499/";
 
 	public delegate void OnCompleteDelegate();
 	public void OnComplete(string results)
@@ -23,6 +23,8 @@ public static class ServerManager : Object {
 //		products.Add("price", "5.29");
 
 //		POST (supercheckoutvr + "product/create", products);
+
+//		GET(supercheckoutvr + "product/findAll");
 	}
 
 	public WWW GET(string url) {

@@ -4,18 +4,24 @@ using System.Collections.Generic;
 
 public class ProductManager : MonoBehaviour {
 
-	private string supercheckoutvr = "localhost:6499";
-	// Use this for initialization
+	private string supercheckoutvr = "localhost:6499/";
+	private ServerManager sm;
+
+	void Start(){
+		sm = GetComponent<ServerManager> ();
+		findAllItems ();
+	}
+
 	void createItem () {
 		Dictionary<string, string> products = new Dictionary<string, string>();	
 	}
 	
-	void updateItem  () {
-	
+	void updateItem  (string id) {
+		
 	}
 
 	void findAllItems() {
-		ServerManager.GET(supercheckoutvr + "product/findAll");
+		sm.GET(supercheckoutvr + "product/findAll");
 	}
 
 
