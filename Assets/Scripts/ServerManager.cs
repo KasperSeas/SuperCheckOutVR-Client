@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ServerManager : MonoBehaviour {
 
 	private string results;
+	private string supercheckoutvr = "https://supercheckoutvr.herokuapp.com/";
 
 	public delegate void OnCompleteDelegate();
 	public void OnComplete(string results)
@@ -14,8 +15,15 @@ public class ServerManager : MonoBehaviour {
 	}
 
 	void Start(){
-		GET ("https://supercheckoutvr.herokuapp.com/product/findAll");
-		POST ("https://supercheckoutvr.herokuapp.com/product/create");
+		
+
+		Dictionary<string, string> products = new Dictionary<string, string>();
+
+		products.Add("name", "Picture Frame");
+		products.Add("price", "12.49");
+
+//		POST ("https://supercheckoutvr.herokuapp.com/product/create", products);
+		GET (supercheckoutvr + "product/findAll");
 	}
 
 	public WWW GET(string url) {
