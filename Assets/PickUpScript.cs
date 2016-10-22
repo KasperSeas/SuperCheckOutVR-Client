@@ -9,6 +9,7 @@ public class PickUpScript : MonoBehaviour {
 
     SteamVR_Controller.Device device;
     SteamVR_TrackedObject trackedObj;
+    SteamVR_LaserPointer laserPointer;
 
     FixedJoint joint;
 
@@ -16,14 +17,27 @@ public class PickUpScript : MonoBehaviour {
 	void Awake () {
 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        laserPointer = GetComponent<SteamVR_LaserPointer>();
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
         device = SteamVR_Controller.Input((int)trackedObj.index);
         // Get the triggers and read from the controller data	
        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
             Debug.Log("You are Pressing Down");
+            if (laserPointer.pointer != null)
+            {
+                laserPointer.pointer.SetActive(true);
+            }
+        }
+
+       if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+            Debug.Log("You are Pressing Up");
+            if (laserPointer.pointer != null)
+            {
+                laserPointer.pointer.SetActive(false);
+            }
         }
 	}
 
