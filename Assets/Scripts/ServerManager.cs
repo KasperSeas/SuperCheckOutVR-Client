@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using JSONObject; 
 
 public class ServerManager : MonoBehaviour {
 
@@ -10,6 +9,7 @@ public class ServerManager : MonoBehaviour {
 	public void OnComplete(string results)
 	{
 		Debug.Log (results);
+		JSONObject 
 	}
 
 	void Start(){
