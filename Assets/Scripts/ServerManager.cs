@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ServerManager : MonoBehaviour {
 
@@ -8,12 +9,13 @@ public class ServerManager : MonoBehaviour {
 	public delegate void OnCompleteDelegate();
 	public void OnComplete(string results)
 	{
-		Debug.Log (results);
-		JSONObject 
+		JSONObject json = new JSONObject (results);
+		Debug.Log (json);
 	}
 
 	void Start(){
 		GET ("https://supercheckoutvr.herokuapp.com/product/findAll");
+		POST ("https://supercheckoutvr.herokuapp.com/product/create");
 	}
 
 	public WWW GET(string url) {
@@ -21,6 +23,19 @@ public class ServerManager : MonoBehaviour {
 
 		WWW www = new WWW (url);
 		StartCoroutine (WaitForRequest (www));
+		return www;
+	}
+
+	public WWW POST(string url, Dictionary<string,string> post) {
+		WWWForm form = new WWWForm();
+
+		foreach(KeyValuePair<string,string> post_arg in post) {
+			form.AddField(post_arg.Key, post_arg.Value);
+		}
+
+		WWW www = new WWW(url, form);
+
+		StartCoroutine(WaitForRequest(www));
 		return www;
 	}
 
