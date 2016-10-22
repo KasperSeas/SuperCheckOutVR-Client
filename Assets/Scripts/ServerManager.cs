@@ -13,7 +13,7 @@ public class ServerManager : MonoBehaviour {
 	}
 
 	void Start(){
-		GET ("localhost:6499/product/findAll");
+		GET ("https://supercheckoutvr.herokuapp.com/product/findAll");
 	}
 
 	public WWW GET(string url) {
