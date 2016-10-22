@@ -10,10 +10,11 @@ public class ProductManager : MonoBehaviour {
 	void Start(){
 		sm = GetComponent<ServerManager> ();
 //		findAllItems ();
-		Product prod = new Product("Blue Paint", 5.0f);
+		Product prod = new Product("Blue Paint", 8.0f);
+//		blue paint id: 580bf2867ca1704f69b6432a
 
-
-		createItem(prod);
+//		createItem(prod);
+		updateItem("580bf2867ca1704f69b6432a", prod);
 
 	}
 
@@ -21,18 +22,18 @@ public class ProductManager : MonoBehaviour {
 		Dictionary<string, string> dict = new Dictionary<string, string>();
 		dict.Add ("name", product.name);
 		dict.Add ("price", product.price.ToString());
-		sm.POST (supercheckoutvr + "product/create", dict);
+		sm.POST (supercheckoutvr+"product/create", dict);
 	}
 	
 	void updateItem  (string id, Product product) {
 		Dictionary<string, string> dict = new Dictionary<string, string>();
 		dict.Add ("name", product.name);
 		dict.Add ("price", product.price.ToString());
-//		sm.POST (supercheckoutvr + "product/findAll", dict);
+		sm.POST (supercheckoutvr+"product/update?_id="+id, dict);
 	}
 
 	void findAllItems() {
-		sm.GET(supercheckoutvr + "product/findAll");
+		sm.GET(supercheckoutvr+"product/findAll");
 	}
 
 
