@@ -9,15 +9,26 @@ public class ProductManager : MonoBehaviour {
 
 	void Start(){
 		sm = GetComponent<ServerManager> ();
-		findAllItems ();
+//		findAllItems ();
+		Product prod = new Product("Blue Paint", 5.0f);
+
+
+		createItem(prod);
+
 	}
 
-	void createItem () {
-		Dictionary<string, string> products = new Dictionary<string, string>();	
+	void createItem (Product product) {
+		Dictionary<string, string> dict = new Dictionary<string, string>();
+		dict.Add ("name", product.name);
+		dict.Add ("price", product.price.ToString());
+		sm.POST (supercheckoutvr + "product/create", dict);
 	}
 	
-	void updateItem  (string id) {
-		
+	void updateItem  (string id, Product product) {
+		Dictionary<string, string> dict = new Dictionary<string, string>();
+		dict.Add ("name", product.name);
+		dict.Add ("price", product.price.ToString());
+//		sm.POST (supercheckoutvr + "product/findAll", dict);
 	}
 
 	void findAllItems() {
