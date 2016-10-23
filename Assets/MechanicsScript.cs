@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MechanicsScript : MonoBehaviour {
 
-	GameObject itemInformation;
+	public GameObject itemInformation;
 	Text itemName;
 	Text itemPrice;
 	Text itemDescription;
@@ -55,16 +55,31 @@ public class MechanicsScript : MonoBehaviour {
 		itemName.text = name;
         itemPrice.text = price;
 		itemDescription.text = description;
+	}
+
+    public void updateItemInformationPointing(GameObject item)
+    {
+        updateItemInformation(item);
         // position overlay in between item and user
-        // itemInformation.transform.position = 0.5f * (item.transform.position + mainCamera.transform.position);
         itemInformation.transform.position = new Vector3(item.transform.position.x, item.transform.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, item.transform.position.z);
         // have the item information look at the user
         Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
         itemInformation.transform.rotation = Quaternion.LookRotation(direction);
-        Debug.Log(itemInformation.transform);
-		// show overlay to user
 		itemInformation.SetActive (true);
-	}
+        Debug.Log(itemInformation.transform);
+    }
+
+    public void updateItemInformationHolding(GameObject item, Transform joint)
+    {
+        updateItemInformation(item);
+        // position overlay in between item and user
+        itemInformation.transform.position = new Vector3(joint.position.x - item.GetComponent<BoxCollider>().size.x + 0.5f, joint.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, joint.position.z + (item.GetComponent<BoxCollider>().size.z / 2.0f));
+        // have the item information look at the user
+        Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
+        itemInformation.transform.rotation = Quaternion.LookRotation(direction);
+		itemInformation.SetActive (true);
+        Debug.Log(itemInformation.transform);
+    }
 
 	public void showFurniture1Information() {
 		Debug.Log ("1");
