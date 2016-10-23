@@ -20,6 +20,5 @@ public class ThankYou : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         total.text = sc.grandTotalLabel.text;
-
 	}
 }

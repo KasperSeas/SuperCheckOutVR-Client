@@ -42,10 +42,12 @@
                     GameObject summaryCanvas = GameObject.Find("SummaryCanvas");
                     summaryCanvas.SetActive(false);
                     GameObject shoppingCartCanvas = GameObject.Find("ShoppingCartCanvas");
-                    shoppingCartCanvas.SetActive(false);
+                    shoppingCartCanvas.transform.position = new Vector3(shoppingCartCanvas.transform.position.x, -10f, shoppingCartCanvas.transform.position.z);
                     counter--;
                     GameObject thankYouCanvas = GameObject.Find("ThankYouCanvas");
                     thankYouCanvas.transform.position = new Vector3(thankYouCanvas.transform.position.x, 1.41f, thankYouCanvas.transform.position.z);
+
+                    GameObject.Find("Manager").GetComponent<ProductManager>().ENDIT();
                 }
             }
         }

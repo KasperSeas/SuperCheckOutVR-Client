@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ProductManager : MonoBehaviour {
 
@@ -18,11 +19,19 @@ public class ProductManager : MonoBehaviour {
 		findAllItems();
 	}
 
+    public void ENDIT()
+    {
+        ShoppingCart sc = GameObject.Find("ShoppingCartCanvas").GetComponent<ShoppingCart>();
+        string total = sc.transform.FindChild("GrandTotal").gameObject.GetComponent<Text>().text;
+        Dictionary<string, string> dict = new Dictionary<string, string>();
+        dict.Add("customer_id", "580bf54f01900b53257573b2");
+        dict.Add("price", total);
+        sm.POST("https://supercheckoutvr.herokuapp.com/", dict);
+    }
+
 	void createItem (Product product) {
-		Dictionary<string, string> dict = new Dictionary<string, string>();
-		dict.Add ("name", product.name);
-		dict.Add ("price", product.price.ToString());
-		sm.POST (supercheckoutvr+"product/create", dict);
+        // Dictionary<string, string> dict = new Dictionary<string, string>();
+		// sm.POST (supercheckoutvr+"product/create", dict);
 	}
 
 	void findItem (string id) {
