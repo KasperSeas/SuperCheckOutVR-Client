@@ -10,7 +10,7 @@ public class ProductManager : MonoBehaviour {
 	void Start(){
 		sm = GetComponent<ServerManager> ();
 //		findAllItems ();
-		Product prod = new Product("Blue Paint", 8.0f);
+		Product prod = new Product("Blue Paint", 8.0f, "", "");
 //		createItem(prod);
 //		updateItem("580bf8557ca1704f69b6432d", prod);
 //		findItem("580bf2867ca1704f69b6432a");
