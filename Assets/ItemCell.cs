@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class ItemCell : MonoBehaviour {
 
-	public string name; 
-
 	void Start () {
-		GameObject childGO = transform.FindChild("Name").gameObject;
-		Text name = childGO.GetComponent<Text> ();
-		name.text = "moo";
-		Debug.Log (name.text);
+//		GameObject childGO = transform.FindChild("Name").gameObject;
+//		Text name = childGO.GetComponent<Text> ();
+//		name.text = "moo";
+//		Debug.Log (name.text);
 	}
-	
+
+	public void populate(string name){
+		GameObject child = transform.FindChild("Name").gameObject;
+		Text childName = child.GetComponent<Text> ();
+		childName.text = name;
+	}
+
 }
