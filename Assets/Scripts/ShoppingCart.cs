@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class ShoppingCart : MonoBehaviour {
 
 	public List<Product> products;
+	public GameObject itemCell;
+
 
 	void Start(){
 		products = new List<Product> ();
@@ -15,5 +17,13 @@ public class ShoppingCart : MonoBehaviour {
 
 	void addItem(Product product){
 		products.Add (product);
+		GameObject ic = Instantiate(itemCell, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+
+		RectTransform rt = ic.GetComponent<RectTransform> ();
+		rt.sizeDelta = new Vector2( 1.95f, 0.15f);
+		rt.localPosition = new Vector3 (-0.45f, 1.55f, 1.7f); 
+//		rt.offsetMin = new Vector2(rt.offsetMin.x, 1.1295f);
+//		rt.offsetMax = new Vector2(rt.offsetMax.x, -0.2765f);
+		ic.transform.parent = transform;
 	}
 }
