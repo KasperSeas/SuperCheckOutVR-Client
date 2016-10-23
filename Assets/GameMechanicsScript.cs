@@ -64,19 +64,19 @@ public class GameMechanicsScript : MonoBehaviour {
 
 	public void showFurniture1Information() {
 		Debug.Log ("1");
-		Product product = new Product ("Tall Lamp", 4.99f, "This lamp has very good lighting.");
+		Product product = new Product ("Tall Lamp", 4.99f, "This lamp has very good lighting.", "");
 		updateItemInformation (GameObject.Find ("Furniture1"), product);
 	}
 
 	public void showFurniture2Information() {
 		Debug.Log ("2");
-		Product product = new Product ("Wooden Lamp", 8.99f, "This lamp is very beautiful.");
+		Product product = new Product ("Wooden Lamp", 8.99f, "This lamp is very beautiful.", "");
 		updateItemInformation (GameObject.Find ("Furniture2"), product);
 	}
 
 	public void showFurniture3Information() {
 		Debug.Log ("3");
-		Product product = new Product ("Steel Lamp", 9.99f, "This lamp is very sturdy.");
+		Product product = new Product ("Steel Lamp", 9.99f, "This lamp is very sturdy.", "");
 		updateItemInformation (GameObject.Find ("Furniture3"), product);
 	}
 }
