@@ -52,7 +52,7 @@ public class GameMechanicsScript : MonoBehaviour {
 		string price = product.price.ToString ();
 		string description = product.description;
 		itemName.text = name;
-		itemPrice.text = "$" + price;
+		itemPrice.text = price;
 		itemDescription.text = description;
 		// position overlay in between item and user
 		itemInformation.transform.position = 1.0f * (item.transform.position + mainCamera.transform.position);
@@ -63,17 +63,20 @@ public class GameMechanicsScript : MonoBehaviour {
 	}
 
 	public void showFurniture1Information() {
-		Product product = new Product ("Tall Lamp", 4.99f, "This lamp has very good lighting.");
+		Debug.Log ("1");
+		Product product = new Product ("Tall Lamp", 4.99f, "This lamp has very good lighting.", "");
 		updateItemInformation (GameObject.Find ("Furniture1"), product);
 	}
 
 	public void showFurniture2Information() {
-		Product product = new Product ("Wooden Lamp", 8.99f, "This lamp is very beautiful.");
+		Debug.Log ("2");
+		Product product = new Product ("Wooden Lamp", 8.99f, "This lamp is very beautiful.", "");
 		updateItemInformation (GameObject.Find ("Furniture2"), product);
 	}
 
 	public void showFurniture3Information() {
-		Product product = new Product ("Steel Lamp", 9.99f, "This lamp is very sturdy.");
+		Debug.Log ("3");
+		Product product = new Product ("Steel Lamp", 9.99f, "This lamp is very sturdy.", "");
 		updateItemInformation (GameObject.Find ("Furniture3"), product);
 	}
 }
