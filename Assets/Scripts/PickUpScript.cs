@@ -40,7 +40,13 @@ public class PickUpScript : MonoBehaviour {
             Debug.Log("Touching an object");
             joint = col.gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = rigidBodyAttachPoint;
+
+            MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
+            gameMechanic.updateItemInformation(GameObject.Find(col.gameObject.name));
         } else if (joint != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger)) {
+            MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
+            gameMechanic.itemInformation.SetActive(false);
+
             GameObject go = joint.gameObject;
             Rigidbody rigidBody = go.GetComponent<Rigidbody>();
             Object.Destroy(joint);
@@ -52,6 +58,8 @@ public class PickUpScript : MonoBehaviour {
         {
             if (col.gameObject.tag == "Selectable")
             {
+                MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
+                gameMechanic.itemInformation.SetActive(false);
                 col.gameObject.SetActive(false);
                 Debug.Log("You are purchasing an item!" + col.gameObject.name);
             }
