@@ -6,6 +6,8 @@
     public class PointerEventListener : MonoBehaviour
     {
 
+        VRTK_SimplePointer pointer;
+
         // Use this for initialization
         void Start()
         {
@@ -30,10 +32,12 @@
             {
                 Debug.Log("Pointer in " + args.target.name);
                 Transform targetObject = args.target;
-                //if (targetObject.tag == "Selectable")
-                //{
-                //    targetObject.Translate(targetObject.transform.localPosition.x, targetObject.transform.localPosition.y + 0.01f, targetObject.transform.localPosition.z);
-                //}
+                if (targetObject.tag == "Selectable")
+                {
+                    //targetObject.Translate(targetObject.transform.localPosition.x, targetObject.transform.localPosition.y + 0.01f, targetObject.transform.localPosition.z);
+                    pointer = GetComponent<VRTK_SimplePointer>();
+                    pointer.enabled = false;
+                }
             }
         }
 
