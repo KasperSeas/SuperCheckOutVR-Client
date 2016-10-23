@@ -16,7 +16,7 @@ public class ProductManager : MonoBehaviour {
 //		updateItem("580bf8557ca1704f69b6432d", prod);
 //		findItem("580bf2867ca1704f69b6432a");
 //		destroyItem("580bf8557ca1704f69b6432d");
-		findAllItems();
+		// findAllItems();
 	}
 
     public void ENDIT()
@@ -26,7 +26,7 @@ public class ProductManager : MonoBehaviour {
         Dictionary<string, string> dict = new Dictionary<string, string>();
         dict.Add("customer_id", "580bf54f01900b53257573b2");
         dict.Add("price", total);
-        sm.POST("https://supercheckoutvr.herokuapp.com/", dict);
+        sm.POST(supercheckoutvr + "payment/create", dict);
     }
 
 	void createItem (Product product) {
