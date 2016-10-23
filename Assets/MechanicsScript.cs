@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MechanicsScript : MonoBehaviour {
 
-	GameObject itemInformation;
+	public GameObject itemInformation;
 	Text itemName;
 	Text itemPrice;
 	Text itemDescription;
