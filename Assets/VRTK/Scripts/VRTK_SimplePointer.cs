@@ -42,6 +42,7 @@ namespace VRTK
 
         protected override void OnDisable()
         {
+            Debug.Log("Pointer disabled");
             base.OnDisable();
             if (pointerHolder != null)
             {
