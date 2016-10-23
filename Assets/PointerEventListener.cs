@@ -34,7 +34,7 @@
         {
             if (args.target)
             {
-                Debug.Log("Pointer in " + args.target.name);
+                // Debug.Log("Pointer in " + args.target.name);
                 Transform targetObject = args.target;
                 if (targetObject.tag == "Selectable")
                 {
@@ -45,6 +45,8 @@
                         Debug.Log("Device down pressed!!!!!!!!!");
                         gameMechanic.itemInformation.SetActive(false);
                         targetObject.gameObject.SetActive(false);
+                        ShoppingCart shoppingCart = GameObject.Find("ShoppingCartCanvas").GetComponent<ShoppingCart>();
+                        shoppingCart.addItem(targetObject.gameObject.GetComponent<ProductDescription>().product);
                     }
                 }
             }
@@ -54,7 +56,7 @@
         {
             if (args.target)
             {
-                Debug.Log("Pointer out " + args.target.name);
+                // Debug.Log("Pointer out " + args.target.name);
                 Transform targetObject = args.target;
                 if (targetObject.tag == "Selectable")
                 {
@@ -66,11 +68,11 @@
 
         public void DoPointerDestinationSet(object sender, DestinationMarkerEventArgs args)
         {
-            Debug.Log("Destination set: " + args.target.name);
+            // Debug.Log("Destination set: " + args.target.name);
             Transform targetObject = args.target;
             if (targetObject.tag == "Selectable")
             {
-                Debug.Log("Object was selectable");
+                // Debug.Log("Object was selectable");
                 if (targetObject.tag == "Selectable")
                 {
                     MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();

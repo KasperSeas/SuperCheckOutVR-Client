@@ -23,11 +23,11 @@ public class PickUpScript : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObj.index);
         // Get the triggers and read from the controller data	
        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
-            Debug.Log("You are Pressing Down");
+            // Debug.Log("You are Pressing Down");
         }
 
        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
-            Debug.Log("You are Pressing Up");
+            // Debug.Log("You are Pressing Up");
         }
 
 	}
@@ -37,7 +37,7 @@ public class PickUpScript : MonoBehaviour {
         // If the rigid body collides with the picked up object, then add to parent 
         if (joint == null && device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Debug.Log("Touching an object");
+            // Debug.Log("Touching an object");
             joint = col.gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = rigidBodyAttachPoint;
 
@@ -64,6 +64,8 @@ public class PickUpScript : MonoBehaviour {
                 gameMechanic.itemInformation.SetActive(false);
                 col.gameObject.SetActive(false);
                 Debug.Log("You are purchasing an item!" + col.gameObject.name);
+                ShoppingCart shoppingCart = GameObject.Find("ShoppingCartCanvas").GetComponent<ShoppingCart>();
+                shoppingCart.addItem(col.gameObject.GetComponent<ProductDescription>().product);
             }
         }
     }
@@ -73,12 +75,12 @@ public class PickUpScript : MonoBehaviour {
         Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
         if (origin != null)
         {
-            Debug.Log("Origin exists! it is " + origin);
+            // Debug.Log("Origin exists! it is " + origin);
             rigidbody.velocity = origin.TransformVector(device.velocity);
             rigidbody.angularVelocity = origin.TransformVector(device.angularVelocity);
         } else
         {
-            Debug.Log("Origin does not exist! it is " + origin);
+            // Debug.Log("Origin does not exist! it is " + origin);
             rigidbody.velocity = device.velocity;
             rigidbody.angularVelocity = device.angularVelocity;
         }

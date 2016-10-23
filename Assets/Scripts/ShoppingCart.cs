@@ -20,15 +20,16 @@ public class ShoppingCart : MonoBehaviour {
 		products = new List<Product> ();
 		numOfItems = 0;
 		grandTotalLabel = transform.FindChild ("GrandTotal").gameObject.GetComponent <Text> ();
-		addItem (prod1);
-		addItem (prod1);
-		addItem (prod3);
-		addItem (prod4);
-		updateTable ();
 
-		Invoke ("test1", 2);
-		Invoke ("test2", 4);
-		Invoke ("test3", 6);
+		//addItem (prod1);
+		//addItem (prod1);
+		//addItem (prod3);
+		//addItem (prod4);
+		//updateTable ();
+
+		//Invoke ("test1", 2);
+		//Invoke ("test2", 4);
+		//Invoke ("test3", 6);
 	}
 
 	public void removeItem(Product product) {
@@ -42,12 +43,14 @@ public class ShoppingCart : MonoBehaviour {
 				return;
 			}
 		}
+        updateTable();
 	}
 
 	public void addItem(Product product){
 		bool duplicate = false;
-		for (var i = 0; i < products.Count; i++) { if (products[i].name == product.name) { products[i].quantity += 1; duplicate = true; } }
+		for (var i = 0; i < products.Count; i++) { if (products[i].brand == product.brand) { products[i].quantity += 1; duplicate = true; } }
 		if (!duplicate) { products.Add (product); }
+        updateTable();
 	}
 
 	public void updateTable() {
