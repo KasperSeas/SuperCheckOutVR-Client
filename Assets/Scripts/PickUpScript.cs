@@ -42,7 +42,9 @@ public class PickUpScript : MonoBehaviour {
             joint.connectedBody = rigidBodyAttachPoint;
 
             MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
-            gameMechanic.updateItemInformation(GameObject.Find(col.gameObject.name));
+            gameMechanic.updateItemInformationHolding(GameObject.Find(col.gameObject.name), joint.transform);
+            FixedJoint infoJoint = gameMechanic.itemInformation.AddComponent<FixedJoint>();
+            infoJoint.connectedBody = rigidBodyAttachPoint;
         } else if (joint != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger)) {
             MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
             gameMechanic.itemInformation.SetActive(false);
@@ -54,7 +56,7 @@ public class PickUpScript : MonoBehaviour {
             TossObject(rigidBody);
         }
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && joint != null)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && joint != null)
         {
             if (col.gameObject.tag == "Selectable")
             {
@@ -63,9 +65,7 @@ public class PickUpScript : MonoBehaviour {
                 col.gameObject.SetActive(false);
                 Debug.Log("You are purchasing an item!" + col.gameObject.name);
             }
-
         }
-        
     }
 
     void TossObject (Rigidbody rigidbody)

@@ -39,7 +39,7 @@
                 if (targetObject.tag == "Selectable")
                 {
                     MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
-                    gameMechanic.updateItemInformation(GameObject.Find(targetObject.name));
+                    gameMechanic.updateItemInformationPointing(GameObject.Find(targetObject.name));
                     if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
                     {
                         Debug.Log("Device down pressed!!!!!!!!!");
