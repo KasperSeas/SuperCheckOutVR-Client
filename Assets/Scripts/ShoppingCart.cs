@@ -10,9 +10,9 @@ public class ShoppingCart : MonoBehaviour {
 
 	void Start(){
 		products = new List<Product> ();
-		Product prod = new Product("Blue Paint", 8.0f);
-		addItem (prod);
-		Debug.Log (products[0].name);
+		//Product prod = new Product("Blue Paint", 8.0f);
+		//addItem (prod);
+		//Debug.Log (products[0].name);
 	}
 
 	void addItem(Product product){
@@ -22,8 +22,6 @@ public class ShoppingCart : MonoBehaviour {
 		RectTransform rt = ic.GetComponent<RectTransform> ();
 		rt.sizeDelta = new Vector2( 1.95f, 0.15f);
 		rt.localPosition = new Vector3 (-0.45f, 1.55f, 1.7f); 
-//		rt.offsetMin = new Vector2(rt.offsetMin.x, 1.1295f);
-//		rt.offsetMax = new Vector2(rt.offsetMax.x, -0.2765f);
 		ic.transform.parent = transform;
 	}
 }
