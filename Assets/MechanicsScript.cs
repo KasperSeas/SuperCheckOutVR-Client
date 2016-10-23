@@ -50,15 +50,17 @@ public class MechanicsScript : MonoBehaviour {
 		// update data
 		string name = product.name;
         Debug.Log(name);
-		string price = product.price.ToString ();
+		string price = "$" + string.Format("{0:0.00}", product.price);
 		string description = product.description;
 		itemName.text = name;
-		itemPrice.text = price;
+        itemPrice.text = price;
 		itemDescription.text = description;
-		// position overlay in between item and user
-		itemInformation.transform.position = 0.5f * (item.transform.position + mainCamera.transform.position);
-		Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
-		itemInformation.transform.rotation = Quaternion.LookRotation(direction);
+        // position overlay in between item and user
+        // itemInformation.transform.position = 0.5f * (item.transform.position + mainCamera.transform.position);
+        itemInformation.transform.position = new Vector3(item.transform.position.x, item.transform.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, item.transform.position.z);
+        // have the item information look at the user
+        Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
+        itemInformation.transform.rotation = Quaternion.LookRotation(direction);
         Debug.Log(itemInformation.transform);
 		// show overlay to user
 		itemInformation.SetActive (true);
