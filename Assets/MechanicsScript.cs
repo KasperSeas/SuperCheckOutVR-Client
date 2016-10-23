@@ -73,8 +73,10 @@ public class MechanicsScript : MonoBehaviour {
     {
         updateItemInformation(item);
         // position overlay in between item and user
-        itemInformation.transform.position = new Vector3(joint.position.x - item.GetComponent<BoxCollider>().size.x + 0.5f, joint.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, joint.position.z + (item.GetComponent<BoxCollider>().size.z / 2.0f));
+        // itemInformation.transform.position = new Vector3(joint.position.x - item.GetComponent<BoxCollider>().size.x + 0.5f, joint.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, joint.position.z + (item.GetComponent<BoxCollider>().size.z / 2.0f));
+        // itemInformation.transform.position = new Vector3(joint.position.x - item.GetComponent<BoxCollider>().size.x + 0.0f, joint.position.y + item.GetComponent<BoxCollider>().size.y + 0.5f, joint.position.z + (item.GetComponent<BoxCollider>().size.z + 0.0f));
         // have the item information look at the user
+        itemInformation.transform.position = new Vector3(item.transform.position.x - 0.2f, item.transform.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, item.transform.position.z );
         Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
         itemInformation.transform.rotation = Quaternion.LookRotation(direction);
 		itemInformation.SetActive (true);
