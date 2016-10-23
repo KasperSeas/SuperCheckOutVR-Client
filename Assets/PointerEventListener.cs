@@ -34,9 +34,9 @@
                 Transform targetObject = args.target;
                 if (targetObject.tag == "Selectable")
                 {
-                    //targetObject.Translate(targetObject.transform.localPosition.x, targetObject.transform.localPosition.y + 0.01f, targetObject.transform.localPosition.z);
-                    pointer = GetComponent<VRTK_SimplePointer>();
-                    pointer.enabled = false;
+
+                    MechanicsScript gameMechanic = GameObject.Find("Mechanics").GetComponent<MechanicsScript>();
+                    gameMechanic.updateItemInformation(GameObject.Find(targetObject.name));
                 }
             }
         }

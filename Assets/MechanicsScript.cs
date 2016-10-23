@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameMechanicsScript : MonoBehaviour {
+public class MechanicsScript : MonoBehaviour {
 
 	GameObject itemInformation;
 	Text itemName;
@@ -13,13 +13,10 @@ public class GameMechanicsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		mainCamera = GameObject.Find ("Main Camera");
+		mainCamera = GameObject.Find ("Camera (eye)");
 
 		setupItemInformationCanvas ();
-
-		Invoke ("showFurniture1Information", 2);
-		Invoke ("showFurniture2Information", 4);
-		Invoke ("showFurniture3Information", 6);
+        Debug.Log(mainCamera);
 	}
 	
 	// Update is called once per frame
@@ -46,18 +43,25 @@ public class GameMechanicsScript : MonoBehaviour {
 		}
 	}
 
-	public void updateItemInformation(GameObject item, Product product) {
+	public void updateItemInformation(GameObject item) {
+        // grab the product component
+        ProductDescription productDescription = item.GetComponent<ProductDescription>();
+        Product product = productDescription.product;
 		// update data
 		string name = product.name;
-		string price = product.price.ToString ();
+        Debug.Log(name);
+		string price = "$" + string.Format("{0:0.00}", product.price);
 		string description = product.description;
 		itemName.text = name;
-		itemPrice.text = price;
+        itemPrice.text = price;
 		itemDescription.text = description;
-		// position overlay in between item and user
-		itemInformation.transform.position = 1.0f * (item.transform.position + mainCamera.transform.position);
-		Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
-		itemInformation.transform.rotation = Quaternion.LookRotation(direction);
+        // position overlay in between item and user
+        // itemInformation.transform.position = 0.5f * (item.transform.position + mainCamera.transform.position);
+        itemInformation.transform.position = new Vector3(item.transform.position.x, item.transform.position.y + item.GetComponent<BoxCollider>().size.y + 0.25f, item.transform.position.z);
+        // have the item information look at the user
+        Vector3 direction = itemInformation.transform.position - mainCamera.transform.position;
+        itemInformation.transform.rotation = Quaternion.LookRotation(direction);
+        Debug.Log(itemInformation.transform);
 		// show overlay to user
 		itemInformation.SetActive (true);
 	}
@@ -65,18 +69,15 @@ public class GameMechanicsScript : MonoBehaviour {
 	public void showFurniture1Information() {
 		Debug.Log ("1");
 		Product product = new Product ("Tall Lamp", 4.99f, "This lamp has very good lighting.", "");
-		updateItemInformation (GameObject.Find ("Furniture1"), product);
 	}
 
 	public void showFurniture2Information() {
 		Debug.Log ("2");
 		Product product = new Product ("Wooden Lamp", 8.99f, "This lamp is very beautiful.", "");
-		updateItemInformation (GameObject.Find ("Furniture2"), product);
 	}
 
 	public void showFurniture3Information() {
 		Debug.Log ("3");
 		Product product = new Product ("Steel Lamp", 9.99f, "This lamp is very sturdy.", "");
-		updateItemInformation (GameObject.Find ("Furniture3"), product);
 	}
 }
