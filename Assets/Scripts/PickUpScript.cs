@@ -29,6 +29,7 @@ public class PickUpScript : MonoBehaviour {
        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
             Debug.Log("You are Pressing Up");
         }
+
 	}
 
     void OnTriggerStay (Collider col)
@@ -45,6 +46,16 @@ public class PickUpScript : MonoBehaviour {
             Object.Destroy(joint);
             joint = null;
             TossObject(rigidBody);
+        }
+
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && joint != null)
+        {
+            if (col.gameObject.tag == "Selectable")
+            {
+                col.gameObject.SetActive(false);
+                Debug.Log("You are purchasing an item!" + col.gameObject.name);
+            }
+
         }
         
     }
