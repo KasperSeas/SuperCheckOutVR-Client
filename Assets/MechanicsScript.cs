@@ -17,10 +17,10 @@ public class MechanicsScript : MonoBehaviour {
 
 		setupItemInformationCanvas ();
         Debug.Log(mainCamera);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 

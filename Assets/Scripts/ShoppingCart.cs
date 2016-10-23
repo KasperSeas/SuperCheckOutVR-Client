@@ -14,7 +14,7 @@ public class ShoppingCart : MonoBehaviour {
 	Product prod3 = new Product("Magazine", 8.50f, "", "Cosmopolitan");
 	Product prod4 = new Product("Picture Frame", 8.50f, "", "Amazon");
 
-	Text grandTotalLabel;
+	public Text grandTotalLabel;
 
 	void Start(){
 		products = new List<Product> ();

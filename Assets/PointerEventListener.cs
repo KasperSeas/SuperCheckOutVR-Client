@@ -24,10 +24,30 @@
             device = SteamVR_Controller.Input((int)trackedObj.index);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        int counter = 0;
 
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            {
+                if (counter == 0)
+                {
+                    GameObject summaryCanvas = GameObject.Find("SummaryCanvas");
+                    summaryCanvas.transform.position = new Vector3(summaryCanvas.transform.position.x, 1.33f, summaryCanvas.transform.position.z);
+                    counter++;
+                }
+                else
+                {
+                    GameObject summaryCanvas = GameObject.Find("SummaryCanvas");
+                    summaryCanvas.SetActive(false);
+                    GameObject shoppingCartCanvas = GameObject.Find("ShoppingCartCanvas");
+                    shoppingCartCanvas.SetActive(false);
+                    counter--;
+                    GameObject thankYouCanvas = GameObject.Find("ThankYouCanvas");
+                    thankYouCanvas.transform.position = new Vector3(thankYouCanvas.transform.position.x, 1.41f, thankYouCanvas.transform.position.z);
+                }
+            }
         }
 
         public void DoPointerIn(object sender, DestinationMarkerEventArgs args)
